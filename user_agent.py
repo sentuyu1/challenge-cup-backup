@@ -157,11 +157,12 @@ class AgentConfig:
     teacher_temperature: float = 0.8
 
     # ── max_tokens ──
-    solver_max_tokens: int = 16384
-    analyzer_max_tokens: int = 512
-    strategist_max_tokens: int = 512
+    solver_max_tokens: int = 32768      # 16384→32768，消除约 46% 英文截断
+    refine_max_tokens: int = 32768      # 修正轮同步提高，避免修正后推导被截断
+    analyzer_max_tokens: int = 1024     # 512→1024，确保复杂题型分析完整
+    strategist_max_tokens: int = 1024   # 512→1024，确保策略规划完整
     voter_max_tokens: int = 1024
-    teacher_max_tokens: int = 1024
+    teacher_max_tokens: int = 2048      # 1024→2048，知识点总结更充分
 
     # ── 其他 ──
     internal_error_retries: int = 2    # API internal error 重试
